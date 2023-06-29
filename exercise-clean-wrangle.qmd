@@ -1,0 +1,19 @@
+---
+title: "Exercise: Explore, Clean, and Wrangle Data"
+author: "Bailey Morrison"
+format: html
+---
+
+## About the Data
+
+## Setup
+## Read & Explore data
+## Excersise 1
+
+## Excersise 2
+## Excersise 3
+## Excersise 4
+## Excersise 5
+## Excersise 6
+
+
