@@ -13,6 +13,8 @@ Data can be downloaded [here](https://portal.edirepository.org/nis/mapbrowse?pac
 
 ## Setup
 ```{r}
+#| warning: false
+#| message: false
 library(readr)
 library(dplyr)
 library(ggplot2)
@@ -20,10 +22,44 @@ library(tidyr)
 ```
 
 ## Read & Explore data
+```{r}
+#| warning: false
+#| message: false
+lobster_abundance <- read_csv("https://portal.edirepository.org/nis/dataviewer?packageid=knb-lter-sbc.77.8&entityid=f32823fba432f58f66c06b589b7efac6")
+
+lobster_traps <- read_csv("https://portal.edirepository.org/nis/dataviewer?packageid=knb-lter-sbc.77.8&entityid=66dd61c75bda17c23a3bce458c56ed84")
+```
+
 ## Excersise 1
+GOAL: convert missing values (-99999) to `NA` in SIZE_MM column
+```{r}
+# does -9999 exist in Size_MM column?
+-99999 %in% lobster_abundance$SIZE_MM
+```
+```{r}
+lobster_abundance = lobster_abundance %>%
+  mutate(SIZE_MM = na_if(SIZE_MM, -99999))
+
+
+##check
+-99999 %in% lobster_abundance$SIZE_MM
+unique(lobster_abundance$SIZE_MM)
+```
 
 ## Excersise 2
+GOAL: `filter()` practice. Create a subset with the data for the lobsters at Arroyo Quemado (AQUE) that have a carapace length greater than 70 mm.
+```{r}
+lobster_aque70 = lobster_abundance %>%
+  filter(SITE == "AQUE" & SIZE_MM > 70)
+```
+
 ## Excersise 3
+Create a subset with the traps’ information at all sites where abundance data is not NA. Note that you first have to identify which are these sites. Hint: use `%in%`
+```{r}
+traps_cleaned = lobster_traps %>%
+  filter()
+```
+
 ## Excersise 4
 ## Excersise 5
 ## Excersise 6
